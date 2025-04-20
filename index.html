@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QRCode Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      h1 {
+        color: #333;
+      }
+      #status {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        white-space: pre-wrap;
+        text-align: left;
+        max-height: 400px;
+        overflow-y: auto;
+        font-family: monospace;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>QRCode Generator</h1>
+    <p>CSV 파일을 선택하여 명함을 생성합니다...</p>
+    <div id="status">대기 중...</div>
+
+    <script>
+      const { ipcRenderer } = require("electron");
+
+      let statusText = "";
+      ipcRenderer.on("update-status", (event, message) => {
+        statusText += message + "\n";
+        const statusDiv = document.getElementById("status");
+        statusDiv.textContent = statusText;
+        statusDiv.scrollTop = statusDiv.scrollHeight; // 자동 스크롤
+      });
+    </script>
+  </body>
+</html>
