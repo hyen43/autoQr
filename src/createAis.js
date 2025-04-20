@@ -6,7 +6,7 @@ async function createAis(persons) {
     var fileResult = await createSingleAi(persons[i]);
     fileResults.push(fileResult);
   }
-  console.log(`모든 명함 생성 완료`);
+  console.log(`모든 QR 생성 완료`);
   console.log("fileResult", fileResults);
 }
 
